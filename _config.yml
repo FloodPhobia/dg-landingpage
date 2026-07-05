@@ -1,8 +1,8 @@
 # ── Campaign settings (edit these) ─────────────────────────────
 title: "Program Records — Restricted"
-operation: "OPERATION [CODENAME]"
-handler: "[Your name / handle]"
-cell: "[Cell designation]"
+operation: "OPERATION [ALICE]"
+handler: "Agent Marcus"
+cell: "[M-Cell]"
 schedule: "[Day / time / cadence]"
 vtt_url: "https://vtt.smessina.net"
 
