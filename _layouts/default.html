@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@500;600;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/dossier.css' | relative_url }}">
+</head>
+<body>
+
+<div class="dg-banner">Top Secret // Delta Green // Eyes Only</div>
+
+<nav class="dg-nav">
+  <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Briefing</a>
+  <a href="{{ '/reports/' | relative_url }}" {% if page.url contains '/reports' %}class="active"{% endif %}>Reports</a>
+  <a href="{{ '/roster/' | relative_url }}" {% if page.url contains '/roster' %}class="active"{% endif %}>Roster</a>
+  <a href="{{ site.vtt_url }}" target="_blank" rel="noopener">Terminal ↗</a>
+</nav>
+
+<main class="dg-wrap">
+{{ content }}
+</main>
+
+<div class="dg-banner">Top Secret // Delta Green // Eyes Only</div>
+<p class="dg-legal">
+  Private fan campaign site. Delta Green is a trademark of the Delta Green
+  Partnership. No official affiliation.
+</p>
+
+</body>
+</html>

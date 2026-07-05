@@ -1,0 +1,234 @@
+/* ==========================================================
+   DELTA GREEN CAMPAIGN HUB — CLASSIFIED DOSSIER THEME
+   ========================================================== */
+
+:root {
+  --dg-paper:   #e7ddc4;   /* aged manila */
+  --dg-card:    #efe6cd;   /* lighter sheet */
+  --dg-ink:     #17140e;   /* typewriter ink */
+  --dg-stamp:   #9c2318;   /* faded stamp red */
+  --dg-olive:   #4c4a33;   /* government olive */
+  --dg-redact:  #101010;   /* redaction bar */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--dg-paper);
+  background-image: repeating-linear-gradient(0deg,
+    rgba(23,20,14,0.015) 0px, rgba(23,20,14,0.015) 1px,
+    transparent 1px, transparent 3px);
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  color: var(--dg-ink);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+h1 { text-shadow: 0.5px 0.5px 0 rgba(23,20,14,0.25); }
+
+a { color: var(--dg-ink); }
+a:hover { color: var(--dg-stamp); }
+
+.dg-wrap { max-width: 780px; margin: 0 auto; padding: 0 1.2rem 4rem; }
+
+/* ---- Banner + nav ------------------------------------------ */
+.dg-banner {
+  font-family: 'Oswald', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 0.8rem;
+  background: var(--dg-redact);
+  color: var(--dg-paper);
+  padding: 0.55em 1em 0.45em;
+}
+
+.dg-nav {
+  border-bottom: 3px double var(--dg-ink);
+  display: flex;
+  gap: 1.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0.9rem 1rem;
+}
+.dg-nav a {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.dg-nav a.active {
+  color: var(--dg-stamp);
+  box-shadow: 0 2px 0 var(--dg-stamp);
+}
+
+.dg-legal {
+  text-align: center;
+  font-size: 0.75rem;
+  opacity: 0.65;
+  padding: 0.6rem 1rem 2rem;
+}
+
+/* ---- Stamp -------------------------------------------------- */
+.dg-stamp {
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  color: var(--dg-stamp);
+  border: 4px double var(--dg-stamp);
+  padding: 0.3em 0.8em;
+  transform: rotate(-4deg);
+  opacity: 0.82;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(circle at 30% 40%, black 55%, rgba(0,0,0,0.55) 100%);
+          mask-image: radial-gradient(circle at 30% 40%, black 55%, rgba(0,0,0,0.55) 100%);
+}
+.dg-stamp--green { color: var(--dg-olive); border-color: var(--dg-olive); }
+.dg-stamp--flat  { transform: none; font-size: 0.8rem; }
+
+/* ---- Redaction ----------------------------------------------- */
+.dg-redacted {
+  background: var(--dg-redact);
+  color: transparent;
+  padding: 0 0.3em;
+  border-radius: 1px;
+  cursor: help;
+  user-select: none;
+  transition: background 200ms ease, color 200ms ease;
+}
+.dg-redacted:hover,
+.dg-redacted:focus {
+  background: rgba(156, 35, 24, 0.12);
+  color: var(--dg-ink);
+  user-select: text;
+}
+
+/* ---- Cover sheet ---------------------------------------------- */
+.dg-coversheet {
+  max-width: 640px;
+  margin: 2.5rem auto;
+  background: var(--dg-card);
+  border: 1px solid rgba(23,20,14,0.35);
+  box-shadow: 0 1px 0 rgba(23,20,14,0.15), 6px 8px 0 rgba(23,20,14,0.08);
+  padding: 2.2rem 2rem 2.6rem;
+  position: relative;
+}
+.dg-coversheet::before,
+.dg-coversheet::after {
+  content: "";
+  position: absolute;
+  width: 18px; height: 18px;
+  border: 2px solid var(--dg-ink);
+  opacity: 0.5;
+}
+.dg-coversheet::before { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+.dg-coversheet::after  { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+
+.dg-meta { width: 100%; border-collapse: collapse; margin: 1.2rem 0; }
+.dg-meta td {
+  border-bottom: 1px dotted rgba(23,20,14,0.45);
+  padding: 0.35em 0.4em;
+  font-size: 0.95rem;
+  vertical-align: top;
+}
+.dg-meta td:first-child {
+  width: 34%;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* ---- Handler's note -------------------------------------------- */
+.dg-note {
+  max-width: 520px;
+  margin: 2rem auto;
+  background: #f2ecd9;
+  border-left: 4px solid var(--dg-olive);
+  padding: 1rem 1.2rem;
+  font-family: 'Special Elite', monospace;
+  transform: rotate(0.4deg);
+  box-shadow: 3px 4px 0 rgba(23,20,14,0.08);
+}
+
+/* ---- Access button ---------------------------------------------- */
+.dg-access-row { text-align: center; padding: 1rem 0 2rem; }
+.dg-access {
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 1.05rem;
+  color: var(--dg-paper);
+  background: var(--dg-ink);
+  border: 2px solid var(--dg-ink);
+  padding: 0.95em 2em;
+  text-decoration: none;
+  box-shadow: 5px 5px 0 var(--dg-stamp);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.dg-access:hover {
+  color: var(--dg-paper);
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 var(--dg-stamp);
+}
+.dg-access small {
+  display: block;
+  font-family: 'Courier Prime', monospace;
+  text-transform: none;
+  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+  opacity: 0.75;
+  margin-top: 0.35em;
+}
+
+/* ---- Report cards (list views) ----------------------------------- */
+.dg-card {
+  background: var(--dg-card);
+  border: 1px solid rgba(23,20,14,0.3);
+  box-shadow: 4px 5px 0 rgba(23,20,14,0.07);
+  padding: 1.2rem 1.4rem;
+  margin: 1.2rem 0;
+}
+.dg-card h3 { margin: 0.3rem 0 0.4rem; }
+.dg-card h3 a { text-decoration: none; }
+.dg-card-meta {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  color: var(--dg-olive);
+}
+
+/* ---- Posts --------------------------------------------------------- */
+.dg-post-kicker {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  color: var(--dg-olive);
+  margin: 2rem 0 0.2rem;
+}
+.dg-post h1 { margin-top: 0; }
+.dg-filed { margin: 0.6rem 0 1.6rem; }
+.dg-post-body { max-width: 640px; }
+.dg-post-nav { margin-top: 3rem; overflow: hidden; }
+
+/* ---- Utility -------------------------------------------------------- */
+.dg-center { text-align: center; }
+.dg-small  { font-size: 0.85rem; }
+.dg-dim    { opacity: 0.8; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-access, .dg-redacted { transition: none; }
+}

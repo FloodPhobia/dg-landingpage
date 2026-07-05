@@ -1,0 +1,20 @@
+---
+layout: default
+title: After Action Reports
+permalink: /reports/
+---
+
+<h1>After Action Reports</h1>
+<p class="dg-dim dg-small">Filed in reverse chronological order. Redacted
+passages declassify on hover. Discrepancies between this record and your
+memory should be reported to your Handler, not dwelt upon.</p>
+
+{% for post in site.posts %}
+<div class="dg-card">
+  <div class="dg-card-meta">
+    AAR{% if post.session %} — Session {{ post.session }}{% endif %} · Filed {{ post.date | date: "%Y-%m-%d" }}
+  </div>
+  <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+  {% if post.excerpt %}<div class="dg-small">{{ post.excerpt }}</div>{% endif %}
+</div>
+{% endfor %}

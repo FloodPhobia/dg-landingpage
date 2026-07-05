@@ -1,0 +1,29 @@
+# ── Campaign settings (edit these) ─────────────────────────────
+title: "Program Records — Restricted"
+operation: "OPERATION [CODENAME]"
+handler: "[Your name / handle]"
+cell: "[Cell designation]"
+schedule: "[Day / time / cadence]"
+vtt_url: "https://vtt.smessina.net"
+
+# ── Site settings ───────────────────────────────────────────────
+url: "https://dg.smessina.net"
+baseurl: ""
+timezone: America/Chicago
+
+# ── Build settings ──────────────────────────────────────────────
+markdown: kramdown
+excerpt_separator: "<!--more-->"
+permalink: /reports/:year/:month/:day/:title/
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"

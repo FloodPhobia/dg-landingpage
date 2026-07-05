@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<article class="dg-post">
+
+  <p class="dg-post-kicker">After Action Report{% if page.session %} — Session {{ page.session }}{% endif %}</p>
+  <h1>{{ page.title }}</h1>
+
+  <table class="dg-meta">
+    <tr><td>Operation</td><td>{{ page.operation | default: site.operation }}</td></tr>
+    <tr><td>Date of op</td><td>{{ page.date | date: "%Y-%m-%d" }}</td></tr>
+    {% if page.agents %}<tr><td>Agents present</td><td>{{ page.agents | join: ", " }}</td></tr>{% endif %}
+    {% if page.casualties %}<tr><td>Casualties</td><td><span class="dg-redacted" tabindex="0">{{ page.casualties }}</span></td></tr>{% endif %}
+    {% if page.san %}<tr><td>SAN expended</td><td>{{ page.san }}</td></tr>{% endif %}
+  </table>
+
+  <div class="dg-filed">
+    <span class="dg-stamp dg-stamp--green dg-stamp--flat">Filed &amp; Verified</span>
+  </div>
+
+  <div class="dg-post-body">
+    {{ content }}
+  </div>
+
+  <p class="dg-post-nav">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">← Previous report</a>{% endif %}
+    {% if page.next %}<a href="{{ page.next.url | relative_url }}" style="float:right;">Next report →</a>{% endif %}
+  </p>
+
+</article>
