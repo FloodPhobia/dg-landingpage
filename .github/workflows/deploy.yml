@@ -55,8 +55,8 @@ jobs:
             --template-placeholder "Passphrase" \
             --template-error "Access denied. This attempt has been logged." \
             --template-remember "Keep this terminal authenticated" \
-            --template-color-primary "#17140e" \
-            --template-color-secondary "#e7ddc4"
+            --template-color-primary "#33ff66" \
+            --template-color-secondary "#030905"
           cd ..
           # Flatten if staticrypt nested the output under a subfolder
           if [ -d "_encrypted/_site" ]; then
