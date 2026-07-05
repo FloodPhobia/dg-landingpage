@@ -1,0 +1,77 @@
+name: Build, encrypt, and deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Encrypt HTML with StatiCrypt
+        env:
+          STATICRYPT_PASSWORD: ${{ secrets.STATICRYPT_PASSWORD }}
+          STATICRYPT_SALT: ${{ secrets.STATICRYPT_SALT }}
+        run: |
+          if [ -z "$STATICRYPT_PASSWORD" ] || [ -z "$STATICRYPT_SALT" ]; then
+            echo "::error::Missing STATICRYPT_PASSWORD or STATICRYPT_SALT repo secret."
+            exit 1
+          fi
+          npm install -g staticrypt
+          mkdir -p _encrypted
+          # Encrypt every HTML page, preserving directory structure
+          staticrypt _site -r -d _encrypted \
+            --password "$STATICRYPT_PASSWORD" \
+            --salt "$STATICRYPT_SALT" \
+            --short \
+            --remember 30 \
+            --template-title "RESTRICTED ACCESS" \
+            --template-instructions "Authorized personnel only. Enter the cell passphrase to proceed." \
+            --template-button "AUTHENTICATE" \
+            --template-placeholder "Passphrase" \
+            --template-error "Access denied. This attempt has been logged." \
+            --template-remember "Keep this terminal authenticated" \
+            --template-color-primary "#17140e" \
+            --template-color-secondary "#e7ddc4"
+          # Copy through non-HTML assets (CSS, robots.txt, CNAME, images)
+          rsync -a --exclude='*.html' _site/ _encrypted/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _encrypted
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
