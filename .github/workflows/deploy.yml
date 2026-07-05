@@ -43,8 +43,8 @@ jobs:
           fi
           npm install -g staticrypt
           mkdir -p _encrypted
-          # Encrypt every HTML page, preserving directory structure
-          staticrypt _site -r -d _encrypted \
+          cd _site
+          staticrypt . -r -d ../_encrypted \
             --password "$STATICRYPT_PASSWORD" \
             --salt "$STATICRYPT_SALT" \
             --short \
@@ -57,8 +57,19 @@ jobs:
             --template-remember "Keep this terminal authenticated" \
             --template-color-primary "#17140e" \
             --template-color-secondary "#e7ddc4"
+          cd ..
+          # Flatten if staticrypt nested the output under a subfolder
+          if [ -d "_encrypted/_site" ]; then
+            cp -r _encrypted/_site/. _encrypted/
+            rm -rf _encrypted/_site
+          fi
           # Copy through non-HTML assets (CSS, robots.txt, CNAME, images)
           rsync -a --exclude='*.html' _site/ _encrypted/
+          # Fail loudly if the homepage still isn't at the root
+          if [ ! -f "_encrypted/index.html" ]; then
+            echo "::error::index.html missing from site root after encryption."
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
