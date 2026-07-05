@@ -6,12 +6,28 @@
   <meta name="robots" content="noindex, nofollow">
   <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@500;600;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/dossier.css' | relative_url }}">
 </head>
 <body>
 
 <div class="dg-banner">Top Secret // Delta Green // Eyes Only</div>
+
+<pre class="dg-ascii" aria-hidden="true">
+██████╗ ███████╗██╗  ████████╗ █████╗
+██╔══██╗██╔════╝██║  ╚══██╔══╝██╔══██╗
+██║  ██║█████╗  ██║     ██║   ███████║
+██║  ██║██╔══╝  ██║     ██║   ██╔══██║
+██████╔╝███████╗███████╗██║   ██║  ██║
+╚═════╝ ╚══════╝╚══════╝╚═╝   ╚═╝  ╚═╝
+ ██████╗ ██████╗ ███████╗███████╗███╗   ██╗
+██╔════╝ ██╔══██╗██╔════╝██╔════╝████╗  ██║
+██║  ███╗██████╔╝█████╗  █████╗  ██╔██╗ ██║
+██║   ██║██╔══██╗██╔══╝  ██╔══╝  ██║╚██╗██║
+╚██████╔╝██║  ██║███████╗███████╗██║ ╚████║
+ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝
+</pre>
+<p class="dg-boot">PROGRAM TERMINAL v2.11 — CONNECTION SECURE — {{ site.time | date: "%Y-%m-%d" }} BUILD</p>
 
 <nav class="dg-nav">
   <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Briefing</a>
@@ -29,6 +45,56 @@
   Private fan campaign site. Delta Green is a trademark of the Delta Green
   Partnership. No official affiliation.
 </p>
+
+<audio id="dg-hum" loop preload="auto">
+  <source src="{{ '/assets/audio/crt-hum.ogg' | relative_url }}" type="audio/ogg">
+  <source src="{{ '/assets/audio/crt-hum.m4a' | relative_url }}" type="audio/mp4">
+</audio>
+<button id="dg-audio-toggle" class="dg-audio-toggle" type="button" aria-pressed="false">AUDIO: OFF</button>
+
+<script>
+(function () {
+  var hum = document.getElementById('dg-hum');
+  var btn = document.getElementById('dg-audio-toggle');
+  hum.volume = 0.35;
+
+  function setState(on) {
+    if (on) {
+      hum.play().catch(function () {});
+      btn.textContent = 'AUDIO: ON';
+      btn.setAttribute('aria-pressed', 'true');
+    } else {
+      hum.pause();
+      btn.textContent = 'AUDIO: OFF';
+      btn.setAttribute('aria-pressed', 'false');
+    }
+    try { localStorage.setItem('dg-hum', on ? 'on' : 'off'); } catch (e) {}
+  }
+
+  btn.addEventListener('click', function () { setState(hum.paused); });
+
+  var pref;
+  try { pref = localStorage.getItem('dg-hum'); } catch (e) { pref = null; }
+
+  if (pref !== 'off') {
+    // Try to start immediately; if the browser blocks autoplay,
+    // arm a one-time listener so the first click/keypress starts it.
+    hum.play().then(function () {
+      btn.textContent = 'AUDIO: ON';
+      btn.setAttribute('aria-pressed', 'true');
+    }).catch(function () {
+      var arm = function () {
+        var p; try { p = localStorage.getItem('dg-hum'); } catch (e) { p = null; }
+        if (p !== 'off') { setState(true); }
+        document.removeEventListener('pointerdown', arm);
+        document.removeEventListener('keydown', arm);
+      };
+      document.addEventListener('pointerdown', arm);
+      document.addEventListener('keydown', arm);
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
