@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div class="dg-banner">Top Secret // Delta Green // Eyes Only</div>
+<div class="dg-banner">Eyes Only // Need to Know // NOFORN</div>
 
 <pre class="dg-ascii" aria-hidden="true">
 ██████╗ ███████╗██╗  ████████╗ █████╗
@@ -27,7 +27,7 @@
 ╚██████╔╝██║  ██║███████╗███████╗██║ ╚████║
  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝
 </pre>
-<p class="dg-boot">PROGRAM TERMINAL v2.11 — CONNECTION SECURE — {{ site.time | date: "%Y-%m-%d" }} BUILD</p>
+<p class="dg-boot">PROGRAM TERMINAL v2.11 — CONNECTION SECURE — 1992.07.05 BUILD</p>
 
 <nav class="dg-nav">
   <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Briefing</a>
@@ -40,10 +40,9 @@
 {{ content }}
 </main>
 
-<div class="dg-banner">Top Secret // Delta Green // Eyes Only</div>
+<div class="dg-banner">Eyes Only // Need to Know // NOFORN</div>
 <p class="dg-legal">
-  Private fan campaign site. Delta Green is a trademark of the Delta Green
-  Partnership. No official affiliation.
+ 
 </p>
 
 <audio id="dg-hum" loop preload="auto">
@@ -56,7 +55,7 @@
 (function () {
   var hum = document.getElementById('dg-hum');
   var btn = document.getElementById('dg-audio-toggle');
-  hum.volume = 0.35;
+  hum.volume = 0.25;
 
   function setState(on) {
     if (on) {
