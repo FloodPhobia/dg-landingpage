@@ -8,10 +8,10 @@ layout: default
 
   <table class="dg-meta">
     <tr><td>Operation</td><td>{{ page.operation | default: site.operation }}</td></tr>
-    <tr><td>Date of op</td><td>{{ page.date | date: "%Y-%m-%d" }}</td></tr>
-    {% if page.agents %}<tr><td>Agents present</td><td>{{ page.agents | join: ", " }}</td></tr>{% endif %}
+    <tr><td>Date of op</td><td></td></tr>
+    {% if page.agents %}<tr><td>Agents Active</td><td>{{ page.agents | join: ", " }}</td></tr>{% endif %}
     {% if page.casualties %}<tr><td>Casualties</td><td><span class="dg-redacted" tabindex="0">{{ page.casualties }}</span></td></tr>{% endif %}
-    {% if page.san %}<tr><td>SAN expended</td><td>{{ page.san }}</td></tr>{% endif %}
+    {% if page.san %}<tr><td>Observation Recommended?</td><td>{{ page.san }}</td></tr>{% endif %}
   </table>
 
   <div class="dg-filed">
