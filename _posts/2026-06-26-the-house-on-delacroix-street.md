@@ -15,7 +15,7 @@ N/A
 
 ## Timeline of events
 
-Pending briefing <span class="dg-redacted" tabindex="0">Washington Square Park, NYC, NY - Aug. 10 1995 16:45</span>,
+Pending briefing <span class="dg-redacted" tabindex="0">Washington Square Park, NYC, NY - Aug. 10 1995 16:45</span>.
 
 ## Outstanding threads
 
