@@ -11,38 +11,50 @@
 </head>
 <body>
 
-<div class="dg-banner">Eyes Only // Need to Know // NOFORN</div>
+<div class="dg-banner">Top Secret // Delta // Eyes Only</div>
+
+<pre class="dg-session" aria-label="System login banner">
+ ******************************************************************
+ *  WARNING: THIS IS A U.S. GOVERNMENT COMPUTER SYSTEM. USE OF    *
+ *  THIS SYSTEM CONSTITUTES CONSENT TO MONITORING. UNAUTHORIZED   *
+ *  ACCESS OR USE IS A CRIMINAL OFFENSE. (18 U.S.C. 1030)         *
+ ******************************************************************
+
+   DDN GATEWAY 0448 :: DSNET-3 :: NODE UNREGISTERED
+   SYSTEM BUILD 1992.07.05 :: TERM=VT220 :: 9600-8-N-1
+   LAST LOGIN: 03 JUL 92 23:41 FROM NODE ████████
+   ACCESS GRANTED — CLEARANCE ACCEPTED
+</pre>
 
 <pre class="dg-ascii" aria-hidden="true">
-██████╗ ███████╗██╗  ████████╗ █████╗
-██╔══██╗██╔════╝██║  ╚══██╔══╝██╔══██╗
-██║  ██║█████╗  ██║     ██║   ███████║
-██║  ██║██╔══╝  ██║     ██║   ██╔══██║
-██████╔╝███████╗███████╗██║   ██║  ██║
-╚═════╝ ╚══════╝╚══════╝╚═╝   ╚═╝  ╚═╝
- ██████╗ ██████╗ ███████╗███████╗███╗   ██╗
-██╔════╝ ██╔══██╗██╔════╝██╔════╝████╗  ██║
-██║  ███╗██████╔╝█████╗  █████╗  ██╔██╗ ██║
-██║   ██║██╔══██╗██╔══╝  ██╔══╝  ██║╚██╗██║
-╚██████╔╝██║  ██║███████╗███████╗██║ ╚████║
- ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝
+             ░░
+            ░▒▒░
+           ░▒▓▓▒░
+          ░▒▓██▓▒░
+         ░▒▓████▓▒░
+        ░▒▓██████▓▒░
+       ░▒▓████████▓▒░
+      ░▒▓██████████▓▒░
+     ░▒▓████████████▓▒░
+    ░▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░
+     ░░░░░░░░░░░░░░░░░░
 </pre>
-<p class="dg-boot">PROGRAM TERMINAL v2.11 — CONNECTION SECURE — 1992.07.05 BUILD</p>
 
 <nav class="dg-nav">
-  <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Briefing</a>
-  <a href="{{ '/reports/' | relative_url }}" {% if page.url contains '/reports' %}class="active"{% endif %}>Reports</a>
-  <a href="{{ '/roster/' | relative_url }}" {% if page.url contains '/roster' %}class="active"{% endif %}>Roster</a>
-  <a href="{{ site.vtt_url }}" target="_blank" rel="noopener">Terminal ↗</a>
+  <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>[1] BRIEFING</a>
+  <a href="{{ '/reports/' | relative_url }}" {% if page.url contains '/reports' %}class="active"{% endif %}>[2] AAR TRAFFIC</a>
+  <a href="{{ '/roster/' | relative_url }}" {% if page.url contains '/roster' %}class="active"{% endif %}>[3] PERSONNEL</a>
+  <a href="{{ site.vtt_url }}" target="_blank" rel="noopener">[4] REMOTE UPLINK ↗</a>
 </nav>
 
 <main class="dg-wrap">
 {{ content }}
 </main>
 
-<div class="dg-banner">Eyes Only // Need to Know // NOFORN</div>
+<div class="dg-banner">Top Secret // Delta // Eyes Only</div>
 <p class="dg-legal">
- 
+  NODE 0448 — NO RECORD OF THIS SYSTEM EXISTS. Private fan campaign site.
+  Delta Green is a trademark of the Delta Green Partnership. No official affiliation.
 </p>
 
 <audio id="dg-hum" loop preload="auto">
@@ -55,7 +67,7 @@
 (function () {
   var hum = document.getElementById('dg-hum');
   var btn = document.getElementById('dg-audio-toggle');
-  hum.volume = 0.25;
+  hum.volume = 0.35;
 
   function setState(on) {
     if (on) {
@@ -76,8 +88,6 @@
   try { pref = localStorage.getItem('dg-hum'); } catch (e) { pref = null; }
 
   if (pref !== 'off') {
-    // Try to start immediately; if the browser blocks autoplay,
-    // arm a one-time listener so the first click/keypress starts it.
     hum.play().then(function () {
       btn.textContent = 'AUDIO: ON';
       btn.setAttribute('aria-pressed', 'true');

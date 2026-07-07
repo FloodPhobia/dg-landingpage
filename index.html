@@ -3,51 +3,52 @@ layout: default
 ---
 
 <div class="dg-coversheet">
-  <div class="dg-center" style="margin-bottom:1rem;">
-    <span class="dg-stamp">Top Secret</span>
-  </div>
-
-  <h2 class="dg-center" style="margin:0 0 0.2em;">{{ site.operation }}</h2>
-  <p class="dg-center dg-small" style="margin:0; letter-spacing:0.1em;">
-    CASE OFFICER BRIEFING DATA
-  </p>
+  <p class="dg-motd-head">*** MESSAGE OF THE DAY ***</p>
 
   <table class="dg-meta">
-    <tr><td>Program</td><td>DELTA GREEN</td></tr>
-    <tr><td>User</td><td>{{ site.handler }}</td></tr>
+    <tr><td>From</td><td>A-CELL</td></tr>
+    <tr><td>To</td><td>ALL NODES</td></tr>
+    <tr><td>Re</td><td>{{ site.operation }}</td></tr>
+    <tr><td>Control</td><td>{{ site.handler }}</td></tr>
     <tr><td>Cell</td><td><span class="dg-redacted" tabindex="0">{{ site.cell }}</span></td></tr>
-    <tr><td>Status</td><td>ACTIVE — ongoing operation</td></tr>
-    <tr><td>Next briefing</td><td>{{ site.schedule }}</td></tr>
+    <tr><td>Status</td><td>ACTIVE — OPERATION ONGOING</td></tr>
+    <tr><td>Next contact</td><td>{{ site.schedule }}</td></tr>
   </table>
 
-  <p class="dg-center dg-small dg-dim" style="margin-top:1.4rem;">
-    DESTRUCTION NOTICE [MANDATORY] — DoD 5200.1-R, CH IX
+  <p class="dg-center" style="margin-top:1.6rem; letter-spacing:0.08em;">
+    You have been invited to a night at the opera.
+  </p>
+
+  <p class="dg-center dg-small dg-dim" style="margin-top:1rem;">
+    This node does not exist. This traffic was never sent.
+    Print nothing. Retain nothing. Deniability is survival.
   </p>
 </div>
 
 <div class="dg-access-row">
   <a class="dg-access" href="{{ site.vtt_url }}" target="_blank" rel="noopener">
-    ▸ Enter the Operations Terminal
-    <small>PCMCIA Fortezza KOV-8 Security Token Required</small>
+    [4] Establish Remote Uplink
+    <small>vtt.smessina.net — secondary credentials required</small>
   </a>
 </div>
 
 <div class="dg-note">
-  <strong>A-Cell Notice —</strong> After
-  Action Reports are required within 48 hours of each opeartion. What you saw matters.
-  What you think you saw matters more.
+  <strong>A-CELL ADVISES —</strong> After Action Reports are to be filed
+  on this node within 48 hours of operation end. Read the traffic of
+  cells that came before you. What they saw matters. What they thought
+  they saw matters more.
 </div>
 
-<h2>Latest reports</h2>
+<h2>Latest traffic</h2>
 
 {% for post in site.posts limit: 3 %}
 <div class="dg-card">
   <div class="dg-card-meta">
-    AAR{% if post.session %} — Session {{ post.session }}{% endif %} · Filed {{ post.date | date: "%Y-%m-%d" }}
+    AAR{% if post.session %} — SESSION {{ post.session }}{% endif %} · RECEIVED {{ post.date | date: "%d %b %Y" | upcase }}
   </div>
   <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
   {% if post.excerpt %}<div class="dg-small">{{ post.excerpt }}</div>{% endif %}
 </div>
 {% endfor %}
 
-<p class="dg-center"><a href="{{ '/reports/' | relative_url }}">View all After Action Reports →</a></p>
+<p class="dg-center"><a href="{{ '/reports/' | relative_url }}">[2] OPEN FULL AAR ARCHIVE &gt;&gt;</a></p>
