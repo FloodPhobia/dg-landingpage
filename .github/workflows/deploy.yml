@@ -49,13 +49,11 @@ jobs:
             --salt "$STATICRYPT_SALT" \
             --short \
             --remember 30 \
-            --template-title "RESTRICTED ACCESS" \
-            --template-instructions "Authorized personnel only. Enter the cell passphrase to proceed." \
-            --template-button "AUTHENTICATE" \
-            --template-placeholder "Passphrase" \
-            --template-error "Access denied. This attempt has been logged." \
-            --template-remember "Keep this terminal authenticated" \
-            --template-color-primary "#33ff66" \
+            --template-title "DDN GATEWAY 0448"
+            --template-instructions "This is a U.S. Government computer system. Use constitutes consent to monitoring. Enter access code."
+            --template-button "TRANSMIT"
+            --template-error "ACCESS DENIED. INCIDENT LOGGED."
+            --template-color-primary "#33ff66"
             --template-color-secondary "#030905"
           cd ..
           # Flatten if staticrypt nested the output under a subfolder
