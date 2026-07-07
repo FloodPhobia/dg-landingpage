@@ -49,11 +49,13 @@ jobs:
             --salt "$STATICRYPT_SALT" \
             --short \
             --remember 30 \
-            --template-title "DDN GATEWAY 0448"
-            --template-instructions "This is a U.S. Government computer system. Use constitutes consent to monitoring. Enter access code."
-            --template-button "TRANSMIT"
-            --template-error "ACCESS DENIED. INCIDENT LOGGED."
-            --template-color-primary "#33ff66"
+            --template-title "DDN GATEWAY 0448" \
+            --template-instructions "This is a U.S. Government computer system. Use constitutes consent to monitoring. Enter access code." \
+            --template-button "TRANSMIT" \
+            --template-placeholder "Access code" \
+            --template-error "ACCESS DENIED. INCIDENT LOGGED." \
+            --template-remember "Keep this terminal authenticated" \
+            --template-color-primary "#33ff66" \
             --template-color-secondary "#030905"
           cd ..
           # Flatten if staticrypt nested the output under a subfolder
@@ -61,7 +63,7 @@ jobs:
             cp -r _encrypted/_site/. _encrypted/
             rm -rf _encrypted/_site
           fi
-          # Copy through non-HTML assets (CSS, robots.txt, CNAME, images)
+          # Copy through non-HTML assets (CSS, robots.txt, CNAME, images, audio)
           rsync -a --exclude='*.html' _site/ _encrypted/
           # Fail loudly if the homepage still isn't at the root
           if [ ! -f "_encrypted/index.html" ]; then
